@@ -1,9 +1,8 @@
-package com.vikskod.abbostsfordrestaurant.utils
+package com.vikskod.restaurantlist.utils
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
-import com.vikskod.restaurantlist.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
 fun <T, A> performGetOperation(

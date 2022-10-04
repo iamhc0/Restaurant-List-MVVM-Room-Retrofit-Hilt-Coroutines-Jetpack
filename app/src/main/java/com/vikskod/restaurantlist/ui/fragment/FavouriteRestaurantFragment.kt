@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vikskod.abbostsfordrestaurant.data.model.RestaurantX
 import com.vikskod.restaurantlist.R
 import com.vikskod.restaurantlist.databinding.FragmentRestaurantBinding
 import com.vikskod.restaurantlist.ui.adapter.RestaurantAdapter
@@ -55,7 +54,7 @@ class FavouriteRestaurantFragment : Fragment() {
         restaurantAdapter.setOnContainerClickListener {
             val bundle = Bundle().apply {
                 putSerializable("selected_restaurant", it)
-                putString("title", it.name.trim())      // passing title as an argument to set restaurant title on toolbar
+                putString("title", it.fields.item_name)      // passing title as an argument to set restaurant title on toolbar
             }
             findNavController().navigate(
                 R.id.action_favouriteRestaurantFragment_to_restaurantDetailFragment,
@@ -67,14 +66,14 @@ class FavouriteRestaurantFragment : Fragment() {
     private fun setupObservers() {
         showEmptyMessage(false)
         showProgressBar(true)
-        viewModel.getFavouriteRestaurant.observe(viewLifecycleOwner, {
+        viewModel.getFavouriteRestaurant.observe(viewLifecycleOwner) {
             showProgressBar(false)
             if (it.isNullOrEmpty()) {
                 // Data is empty
                 showEmptyMessage(true)
             }
             restaurantAdapter.differ.submitList(it)
-        })
+        }
     }
 
 

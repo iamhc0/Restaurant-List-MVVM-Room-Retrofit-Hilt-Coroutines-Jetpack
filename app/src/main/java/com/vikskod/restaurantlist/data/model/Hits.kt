@@ -1,6 +1,9 @@
 package com.vikskod.restaurantlist.data.model
 
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import com.vikskod.restaurantlist.data.model.Fields
+import com.vikskod.restaurantlist.data.model.HitX
 
 /*
 Copyright (c) 2022 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -14,9 +17,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class ApiResponse (
+data class Hits(
 
-	@SerializedName("total_hits") val total_hits : Int,
-	@SerializedName("max_score") val max_score : Double,
-	@SerializedName("hits") val hits : List<Hits>
-)
+    @SerializedName("_id") val _id : String,
+    @SerializedName("_index") val _index : String,
+    @SerializedName("_type") val _type : String,
+    @SerializedName("_score") val _score : Double,
+    @SerializedName("fields") val fields : Fields)

@@ -14,9 +14,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class ApiResponse (
+data class Fields (
 
-	@SerializedName("total_hits") val total_hits : Int,
-	@SerializedName("max_score") val max_score : Double,
-	@SerializedName("hits") val hits : List<Hits>
+	@SerializedName("item_id") val item_id : String,
+	@SerializedName("item_name") val item_name : String,
+	@SerializedName("brand_name") val brand_name : String,
+	@SerializedName("nf_calories") val nf_calories : Double,
+	@SerializedName("nf_total_fat") val nf_total_fat : Double,
+	@SerializedName("nf_serving_size_qty") val nf_serving_size_qty : Int,
+	@SerializedName("nf_serving_size_unit") val nf_serving_size_unit : String
 )

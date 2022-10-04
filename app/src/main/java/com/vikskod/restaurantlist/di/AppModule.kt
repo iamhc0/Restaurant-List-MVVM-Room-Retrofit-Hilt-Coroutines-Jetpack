@@ -1,6 +1,5 @@
 package com.vikskod.restaurantlist.di
 
-import com.vikskod.abbostsfordrestaurant.data.model.RestaurantX
 import com.vikskod.restaurantlist.data.local.RestaurantDao
 import com.vikskod.restaurantlist.data.remote.RestaurantRemoteDataSource
 import com.vikskod.restaurantlist.repository.RestaurantRepository
@@ -14,9 +13,12 @@ import javax.inject.Singleton
 
 
 /**
- * Created by Vikash Parajuli on 10/02/2021.
- * vparajuli819@gmail.com
+ * Created by Hamza Chaudhary
+ * Sr. Software Engineer Android
+ * Created on 28 July,2022 09:27
+ * Copyright (c) All rights reserved.
  */
+
 
 @Module
 @InstallIn(SingletonComponent::class)

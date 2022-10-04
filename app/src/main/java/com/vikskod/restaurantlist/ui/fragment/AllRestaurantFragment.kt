@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.vikskod.abbostsfordrestaurant.data.model.RestaurantX
 import com.vikskod.restaurantlist.R
+import com.vikskod.restaurantlist.data.model.HitX
 import com.vikskod.restaurantlist.databinding.FragmentRestaurantBinding
 import com.vikskod.restaurantlist.ui.adapter.RestaurantAdapter
 import com.vikskod.restaurantlist.ui.viewmodel.RestaurantViewModel
@@ -57,7 +57,7 @@ class AllRestaurantFragment : Fragment() {
         restaurantAdapter.setOnContainerClickListener {
             val bundle = Bundle().apply {
                 putSerializable("selected_restaurant", it)
-                putString("title", it.name.trim())      // passing title as an argument to set restaurant title on toolbar
+                putString("title", it.fields.brand_name)      // passing title as an argument to set restaurant title on toolbar
             }
             findNavController().navigate(
                 R.id.action_allRestaurantFragment_to_restaurantDetailFragment,
@@ -74,7 +74,7 @@ class AllRestaurantFragment : Fragment() {
                     showProgressBar(false)
                     if (!it.data.isNullOrEmpty()) {
                         // Doing this because Unwanted extra JsonObject is added on api response
-                        val finalData = ArrayList<RestaurantX>()
+                        val finalData = ArrayList<HitX>()
                         for (item in it.data.toList())
                             finalData.add(item)
 

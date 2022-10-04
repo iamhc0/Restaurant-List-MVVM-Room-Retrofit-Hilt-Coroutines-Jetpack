@@ -9,7 +9,7 @@
         android:id="@+id/allRestaurantFragment"
         android:name="com.vikskod.restaurantlist.ui.fragment.AllRestaurantFragment"
         android:label="Restaurants"
-        tools:layout="@layout/fragment_restaurant" >
+        tools:layout="@layout/fragment_restaurant">
         <action
             android:id="@+id/action_allRestaurantFragment_to_restaurantDetailFragment"
             app:destination="@id/restaurantDetailFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/favouriteRestaurantFragment"
         android:name="com.vikskod.restaurantlist.ui.fragment.FavouriteRestaurantFragment"
         android:label="Favourites"
-        tools:layout="@layout/fragment_restaurant" >
+        tools:layout="@layout/fragment_restaurant">
         <action
             android:id="@+id/action_favouriteRestaurantFragment_to_restaurantDetailFragment"
             app:destination="@id/restaurantDetailFragment" />
@@ -27,9 +27,9 @@
         android:id="@+id/restaurantDetailFragment"
         android:name="com.vikskod.restaurantlist.ui.fragment.RestaurantDetailFragment"
         android:label="{title}"
-        tools:layout="@layout/fragment_restaurant_detail" >
+        tools:layout="@layout/fragment_restaurant_detail">
         <argument
             android:name="selected_restaurant"
-            app:argType="com.vikskod.abbostsfordrestaurant.data.model.RestaurantX" />
+            app:argType="com.vikskod.restaurantlist.data.model.HitX" />
     </fragment>
 </navigation>

@@ -1,12 +1,10 @@
 package com.vikskod.restaurantlist.ui.fragment
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.vikskod.restaurantlist.R
@@ -31,10 +29,10 @@ class RestaurantDetailFragment : Fragment() {
         val restaurant = args.selectedRestaurant
 
         Glide.with(requireContext())
-            .load(restaurant.featuredImage)
+            .load(restaurant.fields).placeholder(R.drawable.ic_restaurant)
             .into(binding.ivBanner)
 
-        binding.tvTitle.text = restaurant.name
-        binding.tvAddress.text = restaurant.location.address
+        binding.tvTitle.text = restaurant.fields.item_name
+        binding.tvAddress.text = "restaurant.location.address"
     }
 }

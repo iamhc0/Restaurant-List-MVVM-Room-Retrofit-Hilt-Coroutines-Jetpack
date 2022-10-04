@@ -1,45 +1,44 @@
 package com.vikskod.restaurantlist.repository
 
-import com.vikskod.abbostsfordrestaurant.data.model.RestaurantX
-import com.vikskod.abbostsfordrestaurant.utils.performGetOperation
-import com.vikskod.restaurantlist.BuildConfig
+import android.util.Log
 import com.vikskod.restaurantlist.data.local.RestaurantDao
+import com.vikskod.restaurantlist.data.model.HitX
 import com.vikskod.restaurantlist.data.remote.RestaurantRemoteDataSource
+import com.vikskod.restaurantlist.utils.performGetOperation
 import javax.inject.Inject
 
 
 /**
- * Created by Vikash Parajuli on 10/02/2021.
- * vparajuli819@gmail.com
+ * Created by Hamza Chaudhary
+ * Sr. Software Engineer Android
+ * Created on 28 July,2022 09:27
+ * Copyright (c) All rights reserved.
  */
+
 class RestaurantRepository @Inject constructor(
     private val remoteDataSource: RestaurantRemoteDataSource,
     private val restaurantDao: RestaurantDao
 ) {
 
+    val TAG = RestaurantRepository::class.java.name
     fun getAllRestaurant() = performGetOperation(
         databaseQuery = { restaurantDao.getAllRestaurant() },
         networkCall = {
             remoteDataSource.getRestaurant(
-                BuildConfig.API_KEY,
-                "259",            //Id of city -> 259 for Melbourne
-                "subzone",    // area type
-                "Abbotsford",        //suburb name
-                "10",            // get total result
-                "rating",         // sort data by rating
-                "desc"          // sorting order
             )
         },
         saveCallResult = {
             // Unwanted JsonObject is added on api response
-            val finalData = ArrayList<RestaurantX>()
-            for (item in it.restaurants)
-                finalData.add(item.restaurant)
+            Log.d(TAG, "getAllRestaurant: $it")
+            val finalData = ArrayList<HitX>()
+            for (item in it.hits) {
+                finalData.add(HitX(item._id,item._index,item._type,item._score,item.fields))
+            }
             restaurantDao.insertAll(finalData)
         }
     )
 
     fun getFavouriteRestaurant() = restaurantDao.getFavouriteRestaurant()
 
-    suspend fun setFavouriteRestaurant(restaurant: RestaurantX) = restaurantDao.update(restaurant)
+    suspend fun setFavouriteRestaurant(restaurant: HitX) = restaurantDao.update(restaurant)
 }

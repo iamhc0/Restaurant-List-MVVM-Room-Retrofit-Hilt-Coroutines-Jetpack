@@ -14,9 +14,12 @@ import javax.inject.Singleton
 
 
 /**
- * Created by Vikash Parajuli on 10/02/2021.
- * vparajuli819@gmail.com
+ * Created by Hamza Chaudhary
+ * Sr. Software Engineer Android
+ * Created on 28 July,2022 09:27
+ * Copyright (c) All rights reserved.
  */
+
 
 @InstallIn(SingletonComponent::class)
 @Module

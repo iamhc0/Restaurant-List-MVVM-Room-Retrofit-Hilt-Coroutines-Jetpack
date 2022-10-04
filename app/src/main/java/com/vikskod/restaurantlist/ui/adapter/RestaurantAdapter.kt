@@ -8,19 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.like.LikeButton
 import com.like.OnLikeListener
-import com.vikskod.abbostsfordrestaurant.data.model.RestaurantX
+import com.vikskod.restaurantlist.R
+import com.vikskod.restaurantlist.data.model.HitX
 import com.vikskod.restaurantlist.databinding.RvListRestaurantBinding
 import java.util.*
 
 class RestaurantAdapter() : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     // Helper for computing the difference between two lists
-    private val callback = object : DiffUtil.ItemCallback<RestaurantX>() {
-        override fun areItemsTheSame(oldItem: RestaurantX, newItem: RestaurantX): Boolean {
-            return oldItem.id == newItem.id
+    private val callback = object : DiffUtil.ItemCallback<HitX>() {
+        override fun areItemsTheSame(oldItem: HitX, newItem: HitX): Boolean {
+            return oldItem.fields.item_id == newItem.fields.item_id
         }
 
-        override fun areContentsTheSame(oldItem: RestaurantX, newItem: RestaurantX): Boolean {
+        override fun areContentsTheSame(oldItem: HitX, newItem: HitX): Boolean {
             return oldItem == newItem
         }
     }
@@ -44,45 +45,47 @@ class RestaurantAdapter() : RecyclerView.Adapter<RestaurantAdapter.RestaurantVie
 
     inner class RestaurantViewHolder(private val binding: RvListRestaurantBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(restaurantX: RestaurantX) {
-            binding.tvTitle.text = restaurantX.name
-            binding.tvAddress.text = restaurantX.location.address
-            binding.btnLike.isLiked = restaurantX.isFavourite
+        fun bind(HitX: HitX) {
+            binding.tvTitle.text = HitX.fields.item_name
+            binding.tvAddress.text = "HitX.location.address"
+            binding.btnLike.isLiked =true// HitX.isFavourite
             binding.btnLike.setOnLikeListener(object : OnLikeListener {
                 override fun liked(likeButton: LikeButton) {
-                    restaurantX.isFavourite = true
+                 //   HitX.isFavourite = true
                     onItemClickListener?.let {
-                        it(restaurantX, true)
+                        it(HitX, true)
                     }
                 }
 
                 override fun unLiked(likeButton: LikeButton) {
-                    restaurantX.isFavourite = false
+                //    HitX.isFavourite = false
                     onItemClickListener?.let {
-                        it(restaurantX, false)
+                        it(HitX, false)
                     }
                 }
             })
 
             Glide.with(binding.ivBanner.context)
-                .load(restaurantX.featuredImage)
+                .load(HitX.fields)
+                .placeholder(R.drawable.ic_restaurant)
                 .into(binding.ivBanner)
+
 
             binding.rlContainer.setOnClickListener {
                 onContainerClickListener?.let {
-                    it(restaurantX)
+                    it(HitX)
                 }
             }
         }
     }
 
-    private var onItemClickListener: ((RestaurantX, Boolean) -> Unit)? = null
-    fun setOnItemClickListener(listener: (RestaurantX, Boolean) -> Unit) {
+    private var onItemClickListener: ((HitX, Boolean) -> Unit)? = null
+    fun setOnItemClickListener(listener: (HitX, Boolean) -> Unit) {
         onItemClickListener = listener
     }
 
-    private var onContainerClickListener: ((RestaurantX) -> Unit)? = null
-    fun setOnContainerClickListener(listener: (RestaurantX) -> Unit) {
+    private var onContainerClickListener: ((HitX) -> Unit)? = null
+    fun setOnContainerClickListener(listener: (HitX) -> Unit) {
         onContainerClickListener = listener
     }
 }

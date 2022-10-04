@@ -1,25 +1,29 @@
 package com.vikskod.restaurantlist.data.remote
 
-import com.vikskod.abbostsfordrestaurant.data.model.ApiResponse
+import com.vikskod.restaurantlist.data.model.ApiResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
 /**
- * Created by Vikash Parajuli on 10/02/2021.
- * vparajuli819@gmail.com
+ * Created by Hamza Chaudhary
+ * Sr. Software Engineer Android
+ * Created on 28 July,2022 09:27
+ * Copyright (c) All rights reserved.
  */
+
 interface ApiService {
-    @GET("search")
+    @GET("search/{item_name}")
     suspend fun getRestaurantData(
-        @Header("user-key") header: String,
-        @Query("entity_id") entityId: String,
-        @Query("entity_type") entityType: String,
-        @Query("q") searchKey: String,
-        @Query("count") maxResults: String,
-        @Query("sort") sort: String,
-        @Query("order") order: String,
+        @Header("X-RapidAPI-Key") header_key: String,
+        @Header("X-RapidAPI-Host") header_host: String ,
+        @Path(value = "item_name", encoded = true) item_name: String,
+        @Query("fields") field: String
+
+
+
     ): Response<ApiResponse>
 }
