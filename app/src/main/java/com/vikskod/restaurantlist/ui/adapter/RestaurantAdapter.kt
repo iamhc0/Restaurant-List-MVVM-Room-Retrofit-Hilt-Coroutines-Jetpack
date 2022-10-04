@@ -18,7 +18,7 @@ class RestaurantAdapter() : RecyclerView.Adapter<RestaurantAdapter.RestaurantVie
     // Helper for computing the difference between two lists
     private val callback = object : DiffUtil.ItemCallback<HitX>() {
         override fun areItemsTheSame(oldItem: HitX, newItem: HitX): Boolean {
-            return oldItem.fields.item_id == newItem.fields.item_id
+            return oldItem._id == newItem._id
         }
 
         override fun areContentsTheSame(oldItem: HitX, newItem: HitX): Boolean {

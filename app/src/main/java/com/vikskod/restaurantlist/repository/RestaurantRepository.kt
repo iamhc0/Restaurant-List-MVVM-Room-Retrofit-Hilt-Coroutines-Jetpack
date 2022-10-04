@@ -29,7 +29,7 @@ class RestaurantRepository @Inject constructor(
         },
         saveCallResult = {
             // Unwanted JsonObject is added on api response
-            Log.d(TAG, "getAllRestaurant: $it")
+            Log.d(TAG, "getAllRestaurant- Api Response: $it")
             val finalData = ArrayList<HitX>()
             for (item in it.hits) {
                 finalData.add(HitX(item._id,item._index,item._type,item._score,item.fields))
