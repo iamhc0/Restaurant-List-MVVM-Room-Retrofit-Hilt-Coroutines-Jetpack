@@ -1,11 +1,12 @@
 package com.vikskod.restaurantlist.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -24,6 +25,7 @@ class AllRestaurantFragment : Fragment() {
 
     private lateinit var binding: FragmentRestaurantBinding
     private lateinit var viewModel: RestaurantViewModel
+    private val TAG = AllRestaurantFragment::class.java.name
 
     @Inject
     lateinit var restaurantAdapter: RestaurantAdapter
@@ -57,7 +59,10 @@ class AllRestaurantFragment : Fragment() {
         restaurantAdapter.setOnContainerClickListener {
             val bundle = Bundle().apply {
                 putSerializable("selected_restaurant", it)
-                putString("title", it.fields.brand_name)      // passing title as an argument to set restaurant title on toolbar
+                putString(
+                    "title",
+                    it.fields.brand_name
+                )      // passing title as an argument to set restaurant title on toolbar
             }
             findNavController().navigate(
                 R.id.action_allRestaurantFragment_to_restaurantDetailFragment,
@@ -71,6 +76,7 @@ class AllRestaurantFragment : Fragment() {
         viewModel.getAllRestaurant.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Resource.Status.SUCCESS -> {
+
                     showProgressBar(false)
                     if (!it.data.isNullOrEmpty()) {
                         // Doing this because Unwanted extra JsonObject is added on api response
@@ -81,6 +87,7 @@ class AllRestaurantFragment : Fragment() {
                         if (finalData.isEmpty()) {
                             showEmptyMessage(true)
                         }
+                        Log.d(TAG, "setupObservers-> final Data: $finalData")
                         restaurantAdapter.differ.submitList(finalData)
                     }
                 }
@@ -109,4 +116,17 @@ class AllRestaurantFragment : Fragment() {
             binding.tvEmpty.visibility = View.GONE
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy: ")
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "onDestroyView: ")
+    }
+
+
 }
