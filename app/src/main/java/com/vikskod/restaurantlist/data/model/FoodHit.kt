@@ -1,9 +1,6 @@
 package com.vikskod.restaurantlist.data.model
 
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import com.vikskod.restaurantlist.data.model.Fields
-import com.vikskod.restaurantlist.data.model.HitX
 
 /*
 Copyright (c) 2022 Kotlin Data Classes Generated from JSON powered by http://www.json2kotlin.com
@@ -17,10 +14,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class Hits(
-
+data class FoodHit(
     @SerializedName("_id") val _id : String,
     @SerializedName("_index") val _index : String,
     @SerializedName("_type") val _type : String,
     @SerializedName("_score") val _score : Double,
-    @SerializedName("fields") val fields : Fields)
+    @SerializedName("fields") val fields : Fields
+)

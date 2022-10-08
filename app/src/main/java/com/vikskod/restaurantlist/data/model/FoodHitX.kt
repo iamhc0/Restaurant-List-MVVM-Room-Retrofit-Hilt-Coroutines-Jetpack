@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 @Entity(tableName = "tbl_restaurant")
-data class HitX(
+data class FoodHitX(
 
     @PrimaryKey
     @SerializedName("_id") val _id : String,

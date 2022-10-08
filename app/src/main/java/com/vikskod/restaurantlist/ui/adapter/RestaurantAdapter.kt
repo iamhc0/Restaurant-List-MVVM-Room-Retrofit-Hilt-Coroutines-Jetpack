@@ -9,19 +9,18 @@ import com.bumptech.glide.Glide
 import com.like.LikeButton
 import com.like.OnLikeListener
 import com.vikskod.restaurantlist.R
-import com.vikskod.restaurantlist.data.model.HitX
+import com.vikskod.restaurantlist.data.model.FoodHitX
 import com.vikskod.restaurantlist.databinding.RvListRestaurantBinding
-import java.util.*
 
 class RestaurantAdapter() : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
 
     // Helper for computing the difference between two lists
-    private val callback = object : DiffUtil.ItemCallback<HitX>() {
-        override fun areItemsTheSame(oldItem: HitX, newItem: HitX): Boolean {
+    private val callback = object : DiffUtil.ItemCallback<FoodHitX>() {
+        override fun areItemsTheSame(oldItem: FoodHitX, newItem: FoodHitX): Boolean {
             return oldItem._id == newItem._id
         }
 
-        override fun areContentsTheSame(oldItem: HitX, newItem: HitX): Boolean {
+        override fun areContentsTheSame(oldItem: FoodHitX, newItem: FoodHitX): Boolean {
             return oldItem == newItem
         }
     }
@@ -45,7 +44,7 @@ class RestaurantAdapter() : RecyclerView.Adapter<RestaurantAdapter.RestaurantVie
 
     inner class RestaurantViewHolder(private val binding: RvListRestaurantBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(HitX: HitX) {
+        fun bind(HitX: FoodHitX) {
             binding.tvTitle.text = HitX.fields.item_name
             binding.tvAddress.text = "HitX.location.address"
             binding.btnLike.isLiked =true// HitX.isFavourite
@@ -79,13 +78,13 @@ class RestaurantAdapter() : RecyclerView.Adapter<RestaurantAdapter.RestaurantVie
         }
     }
 
-    private var onItemClickListener: ((HitX, Boolean) -> Unit)? = null
-    fun setOnItemClickListener(listener: (HitX, Boolean) -> Unit) {
+    private var onItemClickListener: ((FoodHitX, Boolean) -> Unit)? = null
+    fun setOnItemClickListener(listener: (FoodHitX, Boolean) -> Unit) {
         onItemClickListener = listener
     }
 
-    private var onContainerClickListener: ((HitX) -> Unit)? = null
-    fun setOnContainerClickListener(listener: (HitX) -> Unit) {
+    private var onContainerClickListener: ((FoodHitX) -> Unit)? = null
+    fun setOnContainerClickListener(listener: (FoodHitX) -> Unit) {
         onContainerClickListener = listener
     }
 }

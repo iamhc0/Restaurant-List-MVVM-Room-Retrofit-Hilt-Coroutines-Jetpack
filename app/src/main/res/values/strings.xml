@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Restaurant List</string>
-    <string name="restaurant">Restaurant</string>
+    <string name="app_name">Foods Hits</string>
+    <string name="restaurant">Foods</string>
     <string name="favourite">Favourite</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

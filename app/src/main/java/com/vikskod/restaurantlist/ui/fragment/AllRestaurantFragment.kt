@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.vikskod.restaurantlist.R
-import com.vikskod.restaurantlist.data.model.HitX
+import com.vikskod.restaurantlist.data.model.FoodHitX
 import com.vikskod.restaurantlist.databinding.FragmentRestaurantBinding
 import com.vikskod.restaurantlist.ui.adapter.RestaurantAdapter
 import com.vikskod.restaurantlist.ui.viewmodel.RestaurantViewModel
@@ -40,7 +40,7 @@ class AllRestaurantFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentRestaurantBinding.bind(view)
-        viewModel = ViewModelProvider(this).get(RestaurantViewModel::class.java)
+        viewModel = ViewModelProvider(this)[RestaurantViewModel::class.java]
 
         initRecyclerView()
         setupObservers()
@@ -49,7 +49,7 @@ class AllRestaurantFragment : Fragment() {
     private fun initRecyclerView() {
         binding.rvRestaurant.apply {
             adapter = restaurantAdapter
-            layoutManager = LinearLayoutManager(activity)
+            layoutManager = GridLayoutManager(activity,2)
         }
 
         restaurantAdapter.setOnItemClickListener { restaurant, isLiked ->
@@ -80,7 +80,7 @@ class AllRestaurantFragment : Fragment() {
                     showProgressBar(false)
                     if (!it.data.isNullOrEmpty()) {
                         // Doing this because Unwanted extra JsonObject is added on api response
-                        val finalData = ArrayList<HitX>()
+                        val finalData = ArrayList<FoodHitX>()
                         for (item in it.data.toList())
                             finalData.add(item)
 

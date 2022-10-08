@@ -2,7 +2,7 @@ package com.vikskod.restaurantlist.repository
 
 import android.util.Log
 import com.vikskod.restaurantlist.data.local.RestaurantDao
-import com.vikskod.restaurantlist.data.model.HitX
+import com.vikskod.restaurantlist.data.model.FoodHitX
 import com.vikskod.restaurantlist.data.remote.RestaurantRemoteDataSource
 import com.vikskod.restaurantlist.utils.performGetOperation
 import javax.inject.Inject
@@ -30,9 +30,9 @@ class RestaurantRepository @Inject constructor(
         saveCallResult = {
             // Unwanted JsonObject is added on api response
             Log.d(TAG, "getAllRestaurant- Api Response: $it")
-            val finalData = ArrayList<HitX>()
+            val finalData = ArrayList<FoodHitX>()
             for (item in it.hits) {
-                finalData.add(HitX(item._id,item._index,item._type,item._score,item.fields))
+                finalData.add(FoodHitX(item._id,item._index,item._type,item._score,item.fields))
             }
             restaurantDao.insertAll(finalData)
         }
@@ -40,5 +40,5 @@ class RestaurantRepository @Inject constructor(
 
     fun getFavouriteRestaurant() = restaurantDao.getFavouriteRestaurant()
 
-    suspend fun setFavouriteRestaurant(restaurant: HitX) = restaurantDao.update(restaurant)
+    suspend fun setFavouriteRestaurant(restaurant: FoodHitX) = restaurantDao.update(restaurant)
 }

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/allRestaurantFragment"
         android:name="com.vikskod.restaurantlist.ui.fragment.AllRestaurantFragment"
-        android:label="Restaurants"
+        android:label="Foods Hit"
         tools:layout="@layout/fragment_restaurant">
         <action
             android:id="@+id/action_allRestaurantFragment_to_restaurantDetailFragment"
@@ -30,6 +30,6 @@
         tools:layout="@layout/fragment_restaurant_detail">
         <argument
             android:name="selected_restaurant"
-            app:argType="com.vikskod.restaurantlist.data.model.HitX" />
+            app:argType="com.vikskod.restaurantlist.data.model.FoodHitX" />
     </fragment>
 </navigation>

@@ -18,5 +18,5 @@ data class ApiResponse (
 
 	@SerializedName("total_hits") val total_hits : Int,
 	@SerializedName("max_score") val max_score : Double,
-	@SerializedName("hits") val hits : List<Hits>
+	@SerializedName("hits") val hits : List<FoodHit>
 )

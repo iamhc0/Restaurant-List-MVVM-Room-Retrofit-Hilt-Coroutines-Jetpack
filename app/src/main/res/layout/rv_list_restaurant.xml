@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:id="@+id/rlContainer"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="140dp"
         android:layout_margin="8dp"
         android:clickable="true"
         android:focusable="true">
@@ -14,7 +15,9 @@
             android:id="@+id/ivBanner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerInside"
+            android:layout_marginBottom="20dp"
+            tools:src="@drawable/ic_restaurant" />
 
         <View
             android:layout_width="match_parent"
